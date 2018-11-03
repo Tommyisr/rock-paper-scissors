@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+ 	 function computerPlay() {
+          let x = Math.random();
+          if (x <= 0.333) return "Rock"
+          if (x > 0.333 && x <= 0.666) return "Paper"
+          if (x > 0.666) return "Scissors"
+      }
+
+      function playRound(playerSelection,computerSelection) {
+          playerSelection = playerSelection.toLowerCase(playerSelection);
+          playerSelection = playerSelection[0].toUpperCase() + playerSelection.slice(1);
+          if(playerSelection == "Rock") {
+              if(computerSelection == "Paper" ) return `You Lose! ${computerSelection} beats ${playerSelection}`;
+              if(computerSelection == "Scissors" ) return `You Win! ${playerSelection} beats ${computerSelection}`;
+              if(computerSelection === playerSelection ) return `It's a draw!`;
+          }
+          else if(playerSelection == "Paper") {
+              if(computerSelection == "Scissors" ) return `You Lose! ${computerSelection} beats ${playerSelection}`;
+              if(computerSelection == "Rock" ) return `You Win! ${playerSelection} beats ${computerSelection}`;
+              if(computerSelection === playerSelection ) return `It's a draw!`;
+          }
+          else if(playerSelection == "Scissors") {
+              if(computerSelection == "Rock" ) return `You Lose! ${computerSelection} beats ${playerSelection}`;
+              if(computerSelection == "Paper" ) return `You Win! ${playerSelection} beats ${computerSelection}`;
+              if(computerSelection === playerSelection ) return `It's a draw!`;
+          }
+          
+      }
+
+      function game(){
+          // add errors of empty string and meaningless words
+          let userScore = 0;
+          let compScore = 0;
+          for(let i=0; i<5; i++)
+          {
+              let playerSelection = window.prompt("Choose Your Weapon!");
+              let computerSelection = computerPlay(); 
+              let res = playRound(playerSelection, computerSelection);
+              if(res.search("Win")>=0) {
+                  userScore++;
+                  }
+            else if(res.search("Lose")>=0) {
+                compScore++;
+            }
+            else {
+                userScore++;
+                compScore++;
+            }
+            console.log(res);
+            console.log(`Your score is ${userScore}`);
+            console.log(`Computer score is ${compScore}`);
+          }
+
+          if(userScore > compScore) return "You're totally Winner!";
+          if(userScore < compScore) return "You're totally Loser!";
+          if(userScore === compScore) return "Sad but true, it's a draw";
+      }
+      
+console.log(game());
+  </script>
+</body>
+</html>
